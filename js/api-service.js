@@ -192,18 +192,16 @@ const ApiService = (function() {
      * Sends a streaming request to Gemini API
      * @param {string} model - The model to use
      * @param {Array} chatHistory - The message history
-     * @param {string} message - The current user message
      * @param {Function} onChunk - Callback for each chunk of data
      * @returns {Promise<string>} - The full response text
      */
-    async function streamGeminiRequest(model, chatHistory, message, onChunk) {
+    async function streamGeminiRequest(model, chatHistory, onChunk) {
         // Build the request body
         const contents = chatHistory.map(item => ({
             role: item.role === 'assistant' ? 'model' : 'user',
             parts: [{ text: item.content }]
         }));
         
-        contents.push({ role: 'user', parts: [{ text: message }] });
         const requestBody = { contents, generationConfig };
         
         // Send the streaming request
