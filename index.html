@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple AI Chat Agent</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Main chat container -->
+    <main id="chat-container" class="chat-app" style="display: none;">
+        <!-- Chat Header Component -->
+        <header class="chat-app__header">
+            <h2 class="chat-app__header-title">AI Chat</h2>
+            <button id="settings-button" class="chat-app__settings-button" aria-label="Open Settings">
+                <span class="chat-app__settings-button-text">Settings</span>
+            </button>
+        </header>
+
+        <!-- Token Usage Component -->
+        <div id="token-usage" class="chat-app__token-usage">Total tokens used: 0</div>
+
+        <!-- Chat Messages Component -->
+        <section id="chat-window" class="chat-app__window"></section>
+
+        <!-- Chat Controls Component -->
+        <footer id="controls" class="chat-app__controls">
+            <select id="model-select" class="chat-app__model-select" aria-label="Select AI Model">
+                <option value="gpt-4.1-mini" selected>GPT-4.1 Mini</option>
+                <option value="gpt-4.1-nano">GPT-4.1 Nano</option>
+                <option value="gemini-2.0-flash">Gemini 2.0 Flash</option>
+                <option value="gemma-3-27b-it">Gemma 3-27b IT</option>
+            </select>
+            <textarea id="message-input" class="chat-app__message-input" rows="1" placeholder="Type your message here" aria-label="Message Input"></textarea>
+            <button id="send-button" class="chat-app__send-button">Send</button>
+        </footer>
+    </main>
+
+    <!-- Settings modal template -->
+    <template id="settings-modal-template">
+        <div id="settings-modal" class="settings-modal">
+            <div class="settings-modal__content">
+                <h3 class="settings-modal__title">Settings</h3>
+                <div class="settings-modal__item">
+                    <label for="streaming-toggle" class="settings-modal__label">
+                        <input type="checkbox" id="streaming-toggle" class="settings-modal__checkbox">
+                        Stream responses
+                    </label>
+                </div>
+                <div class="settings-modal__item">
+                    <label for="cot-toggle" class="settings-modal__label">
+                        <input type="checkbox" id="cot-toggle" class="settings-modal__checkbox">
+                        Enable Chain of Thought reasoning
+                    </label>
+                </div>
+                <div class="settings-modal__item">
+                    <label for="show-thinking-toggle" class="settings-modal__label">
+                        <input type="checkbox" id="show-thinking-toggle" class="settings-modal__checkbox">
+                        Show AI thinking process
+                    </label>
+                </div>
+                <div class="settings-modal__actions">
+                    <button id="save-settings" class="settings-modal__button settings-modal__button--primary">Save</button>
+                    <button id="close-settings" class="settings-modal__button">Close</button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Message template -->
+    <template id="message-template">
+        <article class="chat-app__message" role="article">
+            <div class="chat-app__message-content"></div>
+        </article>
+    </template>
+
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/api-service.js"></script>
+    <script src="js/ui-controller.js"></script>
+    <script src="js/chat-controller.js"></script>
+    <script src="js/settings-controller.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html> 
